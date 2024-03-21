@@ -1,12 +1,15 @@
-const gameBoard = document.querySelector("#Game-Board")
+const gameBoard = document.querySelector("#Game-Board");
+const scoreBoard = document.querySelector("#Score-Board");
 let selectedcard1;
 let selectedcard2;
 let isComparing = false;
+let score = 0;
+let totalpairs;
 
 
 
 const resetBtn = document.querySelector("#reset-button")
-let cards = CreateCards(10);
+let cards = CreateCards(1);
 ShuffleChildrenElements(cards);
 resetBtn.addEventListener('click', ResetBoard);
 
@@ -15,8 +18,10 @@ function ResetBoard(){
         gameBoard.firstChild.remove();
     }
     console.log("children removed");
+    score = 0;
     cards = CreateCards((cards.length / 2) + 5);
     ShuffleChildrenElements(cards);
+    
 }
 
 function createCard( pairId , char ) {
@@ -38,6 +43,7 @@ function createCard( pairId , char ) {
 function CreateCards(pairs) {
 
     const cardsarray = [];
+    totalpairs = pairs;
 
     for(let i = 0; i < pairs; i++) {
         cardsarray.push(createCard(i,i));
@@ -147,6 +153,7 @@ function CompareCards(card1 , card2){
 
     if(card1.firstChild.dataset.pairnum === card2.firstChild.dataset.pairnum) {
         //score or something
+        Score();
         selectedcard1 = undefined;
         selectedcard2 = undefined;
         isComparing = false;
@@ -175,6 +182,19 @@ function CompareCards(card1 , card2){
 
         
 
+    }
+
+
+}
+function Score() {
+
+    score++;
+    scoreBoard.textContent = `Pairs Matched:${score} Pairs Left ${totalpairs - score}`;
+    scoreBoard.style.fontSize = "1.5em";
+    if(totalpairs-score === 0) {
+        scoreBoard.textContent = "You win!";
+        scoreBoard.style.fontSize = "100px";
+        
     }
 
 

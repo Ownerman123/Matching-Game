@@ -1,8 +1,13 @@
 :root{
 
---facecolor: blue;
---backcolor: green;
+--facecolor: #81E4DA;
+--backcolor: #FFCDB2;
 
+
+}
+body {
+
+    background-color: #E0FF4F;
 
 }
 
@@ -12,17 +17,28 @@
     flex-direction: row;
     justify-content: center;
     align-content: center;
+    border: 10px solid #d8ff2c;
 }
 
 .match-card  {
     position: relative;
-    min-height: 50px;
+    min-height: 100px;
+    min-width: 125px;
     flex: 0 0 22%;
     background-color: var(--backcolor);
-    color: red;
+    color: #F03A47;
     margin: 1rem;
+    border-radius: 5px;
 
 }
+
+.match-card:hover {
+    
+    box-shadow: 7px 3px 8px 0px grey;
+}
+
+
+
 .match-card p {
     position: absolute;
     
