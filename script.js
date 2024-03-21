@@ -136,7 +136,10 @@ function UpdateApearance(card) {
         card.firstChild.style.visibility = "visible";
         card.style.background =  "var(--facecolor)";
 }
-    else{card.firstChild.style.visibility = "hidden";}
+    else{
+        card.firstChild.style.visibility = "hidden";
+        card.style.background =  "var(--backcolor)";    
+}
 
 }
 
