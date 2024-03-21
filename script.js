@@ -1,6 +1,7 @@
 const gameBoard = document.querySelector("#Game-Board")
 let selectedcard1;
 let selectedcard2;
+let isComparing = false;
 
 
 
@@ -13,7 +14,9 @@ function ResetBoard(){
     while(gameBoard.firstChild){
         gameBoard.firstChild.remove();
     }
-    cards = CreateCards(10);
+    console.log("children removed");
+    cards = CreateCards((cards.length / 2) + 5);
+    ShuffleChildrenElements(cards);
 }
 
 function createCard( pairId , char ) {
@@ -89,6 +92,8 @@ function GenShuffledarray(array) {
 
 function Pickcards(event) {
 
+    if(isComparing){return;}
+
     if(selectedcard1 === undefined) {
         selectedcard1 = event.target;
         selectedcard1.dataset.cardside = "face";
@@ -101,6 +106,7 @@ function Pickcards(event) {
         selectedcard2.dataset.cardside = "face";
         UpdateApearance(selectedcard2)
         console.log(selectedcard2);
+        isComparing = true;
         CompareCards(selectedcard1,selectedcard2);
        }
     }
@@ -108,9 +114,28 @@ function Pickcards(event) {
     
 }
 
+function WaitForSecs(secs) {
+
+    const timerInterval = setInterval(function () { 
+
+       secs--;
+       console.log(secs);
+
+        if(secs === 0){
+            clearInterval(timerInterval);
+        }
+
+
+    }, 1000);
+
+}
+
 function UpdateApearance(card) {
     
-    if(card.dataset.cardside == "face"){card.firstChild.style.visibility = "visible";}
+    if(card.dataset.cardside == "face"){
+        card.firstChild.style.visibility = "visible";
+        card.style.background =  "var(--facecolor)";
+}
     else{card.firstChild.style.visibility = "hidden";}
 
 }
@@ -121,16 +146,31 @@ function CompareCards(card1 , card2){
         //score or something
         selectedcard1 = undefined;
         selectedcard2 = undefined;
+        isComparing = false;
     } else { 
         
         selectedcard1 = undefined;
         selectedcard2 = undefined;
         
+        let secs = 1;
+        const timerInterval = setInterval(function () { 
 
-        card1.dataset.cardside = "back";
-        UpdateApearance(card1);
-        card2.dataset.cardside = "back";
-        UpdateApearance(card2);
+            secs--;
+            console.log(secs);
+     
+             if(secs === 0){
+                clearInterval(timerInterval);
+                card1.dataset.cardside = "back";
+                UpdateApearance(card1);
+                card2.dataset.cardside = "back";
+                UpdateApearance(card2);
+                isComparing = false;
+             }
+     
+     
+         }, 1000);
+
+        
 
     }
 

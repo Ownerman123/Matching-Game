@@ -1,3 +1,11 @@
+:root{
+
+--facecolor: blue;
+--backcolor: green;
+
+
+}
+
 #Game-Board {
     display: flex;
     flex-wrap: wrap;
@@ -10,7 +18,7 @@
     position: relative;
     min-height: 50px;
     flex: 0 0 22%;
-    background-color: blue;
+    background-color: var(--backcolor);
     color: red;
     margin: 1rem;
 
