@@ -1,0 +1,28 @@
+#Game-Board {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.match-card  {
+    position: relative;
+    min-height: 50px;
+    flex: 0 0 22%;
+    background-color: blue;
+    color: red;
+    margin: 1rem;
+
+}
+.match-card p {
+    position: absolute;
+    
+    align-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% ,-50%);
+    margin: 0;
+    font-size: 2em;
+    visibility:hidden;
+}
