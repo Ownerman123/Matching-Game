@@ -152,7 +152,7 @@ function UpdateApearance(card) {
 function CompareCards(card1 , card2){
 
     if(card1.firstChild.dataset.pairnum === card2.firstChild.dataset.pairnum) {
-        //score or something
+        
         Score();
         selectedcard1 = undefined;
         selectedcard2 = undefined;
